@@ -1,25 +1,35 @@
 import React, { useState } from "react";
 import "./App.css";
-import { PostCreator } from "./components/postCreator";
+import { fetchRequest } from "./utils";
 
 const App = () => {
   const [user, setUser] = useState();
-  const [post, setPost] = useState();
-  const [list, setList] = useState([]);
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setList([...list, post]);
+    fetchRequest(username, email, password, setUser);
+    //fetch request to back end that creates a user
   };
 
   return (
     <div className="App">
-      <h1>{user ? `Welcome ${user}` : "Please sign in"}</h1>
-      <input onChange={(e) => setUser(e.target.value)} />
-      <PostCreator setPost={setPost} submitHandler={submitHandler} />
-      {list.map((item, index) => {
-        return <p key={index}>{item}</p>;
-      })}
+      <h1>{user ? `Welcome ${user}` : "Please sign up"}</h1>
+      <form onSubmit={submitHandler}>
+        <input
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+        />
+        <input onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
