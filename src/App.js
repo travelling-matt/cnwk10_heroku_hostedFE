@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./App.css";
 import { createRequest } from "./utils/createUser";
 import { loginRequest } from "./utils/loginUser";
+import { listRequest } from "./utils/listUser";
+import { deleteRequest } from "./utils/deleteUser";
+
 //import { logoutRequest } from "./utils/logoutUser";  cannot reset more than one useState
 
 const App = () => {
@@ -9,6 +12,10 @@ const App = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [userlist, setUserlist] = useState();
+  const [userDelete, setUserDelete] = useState();
+
+  const users = userlist;
 
   const createHandler = async (e) => {
     e.preventDefault();
@@ -19,6 +26,16 @@ const App = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
     loginRequest(username, password, setUser);
+  };
+
+  const listHandler = async (e) => {
+    e.preventDefault();
+    listRequest(setUserlist);
+  };
+
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+    deleteRequest(userDelete);
   };
 
   const logoutHandler = () => {
@@ -64,8 +81,22 @@ const App = () => {
         </div>
         :
         <div>
+          <button onClick={listHandler}>List Users</button>
+          <form onSubmit={deleteHandler}>
+            <input onChange={(e) => setUserDelete(e.target.value)}
+            placeholder="username to delete"
+            />
+            <button type="submit">Delete User</button>
+          </form>
           <button onClick={logoutHandler}>Log out</button>
         </div>
+      }
+      {userlist ?
+      <div>
+        `$[users]`
+      </div>
+      :
+      <div></div>
         }
     </div>
   );
