@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { createRequest } from "./utils/createUser";
 import { loginRequest } from "./utils/loginUser";
-import { logoutRequest } from "./utils/logoutUser";
+//import { logoutRequest } from "./utils/logoutUser";  cannot reset more than one useState
 
 const App = () => {
   const [user, setUser] = useState();
