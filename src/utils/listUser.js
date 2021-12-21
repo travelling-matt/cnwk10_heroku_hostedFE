@@ -6,6 +6,7 @@ export const listRequest = async (setter) => {
     const data = await response.json();
     setter(data.users); //object inside data (see server.js of backend)   
     console.log(data.message);
+    console.log(data.users)
   } catch (error) {
     console.log(error);
   }

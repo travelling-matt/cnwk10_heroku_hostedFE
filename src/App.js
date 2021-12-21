@@ -122,7 +122,9 @@ const App = () => {
       }
       {userlist ?
       <div>
-        `$[users]`
+        {userlist.map((item, index) => {
+        return <p key={index}>Username: {item.username}, Email: {item.email}</p>;
+      })}
       </div>
       :
       <div></div>
