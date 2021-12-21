@@ -7,7 +7,7 @@ export const deleteRequest = async (username) => {
         username: username,
       }),
     });
-    const data = await response.json();
+    //const data = await response.json();
   } catch (error) {
     console.log(error);
   }
