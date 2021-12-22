@@ -1,4 +1,5 @@
 export const updateRequest = async (userToUpdate, userInfoToUpdate) => {
+  console.log(userToUpdate, userInfoToUpdate);
   try {
     const response = await fetch("http://localhost:5000/update", {
       method: "PUT",
