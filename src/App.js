@@ -62,6 +62,12 @@ const App = () => {
     console.log("You have logged out");
   };
 
+  const updateUsernameHandler = async (e) => {
+    e.preventDefault();
+    setUserToUpdate(e.target.value);
+
+  }
+
   return (
     <div className="App">
       <h1>{user ? `Welcome ${user}` : "Please login or sign up"}</h1>
@@ -100,9 +106,11 @@ const App = () => {
 
 
           <form onSubmit={updateHandler}>Update User
-            <input onChange={(e) => setUserToUpdate(e.target.value)}
-            placeholder="username of user to update"
+            <input placeholder="username of user to update"
             />
+            {/* <input onChange={(e) => setUserToUpdate(e.target.value)}
+            placeholder="username of user to update"
+            /> */}
             <input onChange={(e) => setUserInfoToUpdate(e.target.value)}
             placeholder="new email address"
             />
