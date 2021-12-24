@@ -25,9 +25,10 @@ const App = () => {
   const [userDelete, setUserDelete] = useState("");
   const [userToUpdate, setUserToUpdate] = useState("");
   const [userInfoToUpdate, setUserInfoToUpdate] = useState("");
+  const [token, setToken] = useState(false)
 
   useEffect(() => {
-    tokenRequest(setUser);
+    tokenRequest(setToken);
   }, []);
 
   const users = userlist;
