@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { createRequest } from "./utils/createUser";
 import { loginRequest } from "./utils/loginUser";
 import { listRequest } from "./utils/listUser";
 import { deleteRequest } from "./utils/deleteUser";
 import { updateRequest } from "./utils/updateUser";
+import { tokenRequest } from "./utils/tokenFetch";
 import { CreateUserForm } from "./components/createUserForm";
 import { LoginForm } from "./components/loginForm";
 import { ListUsersButton } from "./components/listUsersButton";
 import { UpdateUserForm } from "./components/updateUserForm";
 import { DeleteUserForm } from "./components/deleteUserForm";
 import { LogoutButton } from "./components/logoutButton";
+import { MapListUsers } from "./components/mapListUsers";
 
 //import { logoutRequest } from "./utils/logoutUser";  cannot reset more than one useState
 
@@ -23,6 +25,10 @@ const App = () => {
   const [userDelete, setUserDelete] = useState("");
   const [userToUpdate, setUserToUpdate] = useState("");
   const [userInfoToUpdate, setUserInfoToUpdate] = useState("");
+
+  useEffect(() => {
+    tokenRequest(setUser);
+  }, []);
 
   const users = userlist;
 
@@ -58,10 +64,10 @@ const App = () => {
     //fetch request to back end to delete user by username
   };
 
-  const logoutHandler = (e) => {
+  const logoutHandler = () => {
     //logoutRequest(setUser, setUsername, setEmail, setPassword);
     //cant reset more than one useState from seperate component so reset here instead.
-    setUser();
+    setUser(null);
     setUsername("");
     setEmail("");
     setPassword("");
@@ -85,14 +91,12 @@ const App = () => {
           <ListUsersButton listHandler={listHandler} />
           <UpdateUserForm setUserToUpdate={setUserToUpdate} setUserInfoToUpdate={setUserInfoToUpdate} updateHandler={updateHandler} />
           <DeleteUserForm setUserDelete={setUserDelete} deleteHandler={deleteHandler} />
-          <LogoutButton listHandler={logoutHandler} /> 
+          <LogoutButton logoutHandler={logoutHandler} /> 
         </div>
       }
       {userlist ?
       <div>
-        {userlist.map((item, index) => {
-        return <p key={index}>Username: {item.username}, Email: {item.email}</p>;
-      })}
+        <MapListUsers userlist={ userlist } />        
       </div>
       :
       <div></div>
