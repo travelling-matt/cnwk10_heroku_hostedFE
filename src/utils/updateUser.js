@@ -1,7 +1,7 @@
 export const updateRequest = async (userToUpdate, userInfoToUpdate) => {
   console.log(userToUpdate, userInfoToUpdate);
   try {
-    const response = await fetch("http://localhost:5000/update", {
+    const response = await fetch(`${process.env.REACT_APP_REST_API}user`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,6 +1,6 @@
 export const listRequest = async (setter) => {
   try {
-    const response = await fetch("http://localhost:5000/list", {
+    const response = await fetch(`${process.envREACT_APP_REST_API}list`, {
       method: "GET",
     });
     const data = await response.json();

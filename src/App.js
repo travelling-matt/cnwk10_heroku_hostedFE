@@ -5,7 +5,7 @@ import { loginRequest } from "./utils/loginUser";
 import { listRequest } from "./utils/listUser";
 import { deleteRequest } from "./utils/deleteUser";
 import { updateRequest } from "./utils/updateUser";
-import { tokenRequest } from "./utils/tokenFetch";
+//import { tokenRequest } from "./utils/x-tokenFetch";
 import { CreateUserForm } from "./components/createUserForm";
 import { LoginForm } from "./components/loginForm";
 import { ListUsersButton } from "./components/listUsersButton";
@@ -25,11 +25,11 @@ const App = () => {
   const [userDelete, setUserDelete] = useState("");
   const [userToUpdate, setUserToUpdate] = useState("");
   const [userInfoToUpdate, setUserInfoToUpdate] = useState("");
-  const [token, setToken] = useState(false)
+  //const [token, setToken] = useState(false)
 
-  useEffect(() => {
-    tokenRequest(setToken);
-  }, []);
+  // useEffect(() => {
+  //   tokenRequest(setToken);
+  // }, []);
 
   const users = userlist;
 
